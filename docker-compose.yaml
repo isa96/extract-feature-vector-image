@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app1:
+    image: test:latest
+    # ports:
+    #   - 5000:5000
+    volumes:
+      - /.opt/public/:/.opt/public/
+      - /.opt/files/:/.opt/files/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/video0:/dev/video0
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - ~/.Xauthority:/root/.Xauthority
+    restart: always
+    privileged: true
+    network_mode: "host"
+    entrypoint: ["python3", "inference.py"]

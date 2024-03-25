@@ -1,0 +1,6 @@
+virtual-app/
+virtual-venv/
+venv/
+__pycache__/
+*.png
+virtual/
